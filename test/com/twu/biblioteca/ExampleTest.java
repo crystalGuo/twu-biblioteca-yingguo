@@ -24,10 +24,11 @@ public class ExampleTest {
 
     @Test
     public void testWelcomMessage() {
+        String expectResult = "Welcome to Bibliteca!\n";
         String[] args = {};
-        BibliotecaApp.main(args);
+        BibliotecaApp.printWelcomeMessage();
 
-        assertThat(output.toString(), is("Welcome to Bibliteca!\n"));
+        assertThat(output.toString(), is(expectResult));
     }
 
     @After
