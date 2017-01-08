@@ -31,6 +31,17 @@ public class ExampleTest {
         assertThat(output.toString(), is(expectResult));
     }
 
+    @Test
+    public void testShowBookList() {
+        String expectResult = "The books are listed as: \n" +
+                "Best British and Irish Literature\n" +
+                "Best of William Shakespeare\n" +
+                "Very British MM\n";
+        BibliotecaApp.showBookList();
+
+        assertThat(output.toString(), is(expectResult));
+    }
+
     @After
     public void cleanUpStreams() {
         System.setOut(null);
