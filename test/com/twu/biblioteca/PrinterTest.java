@@ -7,32 +7,40 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 
-public class ExampleTest {
+public class PrinterTest {
 
+    private static final String WELCOME_MESSAGE = "Welcome to Bibliteca!";
     private ByteArrayOutputStream output;
+    private Printer printer;
 
     @Before
     public void setUpStreams() throws Exception {
         output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
+        printer = new Printer();
     }
 
     @Test
     public void testWelcomMessage() {
-        String expectResult = "Welcome to Bibliteca!\n";
-        String[] args = {};
-        BibliotecaApp.printWelcomeMessage();
-
+        String expectResult = "Welcome to Bibliteca!";
+        printer.print(WELCOME_MESSAGE);
         assertThat(output.toString(), is(expectResult));
     }
 
     @Test
-    public void testShowBookList() {
+    public void testBookPrinter() {
+        List<Book> bookList = new ArrayList<Book>();
+        bookList.add(new Book("Best British and Irish Literature", "Jimes", "2015"));
+        bookList.add(new Book("Best of William Shakespeare", "Lindy", "2013"));
+        bookList.add(new Book("Very British MM", "Gray", "2016"));
+
         String expectResult =
                 "Best British and Irish Literature\t" +
                 "Jimes\t2015\n" +
@@ -41,7 +49,7 @@ public class ExampleTest {
                 "Very British MM\t" +
                 "Gray\t2016\n";
 
-        BibliotecaApp.showBookList();
+        printer.print(bookList);
 
         assertThat(output.toString(), is(expectResult));
     }
