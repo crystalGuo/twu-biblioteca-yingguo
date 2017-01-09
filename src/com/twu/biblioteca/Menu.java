@@ -20,4 +20,8 @@ public class Menu {
 
         return String.join("\n",result);
     }
+
+    public boolean isValid(int option) {
+        return menu.containsKey(option);
+    }
 }
