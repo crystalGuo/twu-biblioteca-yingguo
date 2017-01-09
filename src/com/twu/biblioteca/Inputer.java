@@ -11,7 +11,7 @@ public class Inputer {
         this.scanner = new Scanner(System.in);
     }
 
-    public int getOption() {
-        return scanner.nextInt();
+    public String getOption() {
+        return scanner.next();
     }
 }
