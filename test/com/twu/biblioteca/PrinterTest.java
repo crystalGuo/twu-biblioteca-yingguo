@@ -8,7 +8,9 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -29,7 +31,7 @@ public class PrinterTest {
 
     @Test
     public void testWelcomMessage() {
-        String expectResult = "Welcome to Bibliteca!";
+        String expectResult = "Welcome to Bibliteca!\n";
         printer.print(WELCOME_MESSAGE);
         assertThat(output.toString(), is(expectResult));
     }
@@ -51,6 +53,17 @@ public class PrinterTest {
 
         printer.print(bookList);
 
+        assertThat(output.toString(), is(expectResult));
+    }
+
+    @Test
+    public void testMenunPrinter() {
+        Map<Integer, String> menuItem = new HashMap<>();
+        menuItem.put(1, "BookList");
+        Menu menu = new Menu(menuItem);
+
+        String expectResult = "1\tBookList\n";
+        printer.print(menu.toString());
         assertThat(output.toString(), is(expectResult));
     }
 

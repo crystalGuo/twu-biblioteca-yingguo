@@ -1,7 +1,9 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BibliotecaApp {
 
@@ -11,8 +13,16 @@ public class BibliotecaApp {
         Printer printer = new Printer();
         printer.print(WELCOME_MESSAGE);
 
-        List<Book> bookList = getBookList();
-        printer.print(bookList);
+        Map<Integer, String> menuItem = new HashMap<>();
+        menuItem.put(1, "BookList");
+        Menu menu = new Menu(menuItem);
+        printer.print(menu.toString());
+
+        Inputer inputer = new Inputer();
+        if(inputer.getOption() == 1) {
+            List<Book> bookList = getBookList();
+            printer.print(bookList);
+        }
     }
 
     private static List getBookList() {
