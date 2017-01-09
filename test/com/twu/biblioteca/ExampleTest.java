@@ -36,7 +36,13 @@ public class ExampleTest {
         String expectResult = "The books are listed as: \n" +
                 "Best British and Irish Literature\n" +
                 "Best of William Shakespeare\n" +
-                "Very British MM\n";
+                "Very British MM\n" +
+                "Very British MM\t" +
+                "Gray\t2016\t\n" +
+                "Best of William Shakespeare\t" +
+                "Lindy\t2013\t\n" +
+                "Best British and Irish Literature\t" +
+                "Jimes\t2015\t\n";
         BibliotecaApp.showBookList();
 
         assertThat(output.toString(), is(expectResult));
