@@ -1,5 +1,9 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.menuOperation.BookList;
+import com.twu.biblioteca.menuOperation.Operation;
+import com.twu.biblioteca.menuOperation.Quit;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,9 +18,14 @@ public class BibliotecaApp {
         Printer printer = new Printer();
         printer.print(WELCOME_MESSAGE);
 
-        Map<Integer, String> menuItem = new HashMap<>();
-        menuItem.put(1, "BookList");
-        menuItem.put(2, "Quit");
+        printmenuOption(printer);
+    }
+
+    private static void printmenuOption(Printer printer) {
+        Map<Integer, Operation> menuItem = new HashMap<>();
+        List<Book> bookList = getBookList();
+        menuItem.put(1, new BookList(bookList, printer));
+        menuItem.put(2, new Quit());
         Menu menu = new Menu(menuItem);
 
         Inputer inputer = new Inputer();
@@ -24,11 +33,7 @@ public class BibliotecaApp {
             printer.print(menu.toString());
             int option = getOption(inputer);
             if(menu.isValid(option)) {
-                if(menuItem.get(option).equals("BookList")) {
-                    printer.print(getBookList());
-                } else if(menuItem.get(option).equals("Quit")) {
-                    break;
-                }
+                menuItem.get(option).operate();
             } else {
                 printer.print(INVALID_OPTION_MESSAGE);
             }

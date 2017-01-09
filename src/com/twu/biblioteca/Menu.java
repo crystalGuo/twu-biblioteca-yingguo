@@ -1,14 +1,16 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.menuOperation.Operation;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class Menu {
 
-    private Map<Integer, String> menu;
+    private Map<Integer, Operation> menu;
 
-    public Menu(Map<Integer, String> menu) {
+    public Menu(Map<Integer, Operation> menu) {
         this.menu = menu;
     }
 
