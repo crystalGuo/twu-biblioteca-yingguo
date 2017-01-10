@@ -12,6 +12,8 @@ public class CheckOut implements Operation{
     private Inputer inputer;
     private BookList bookList;
 
+    public static final String SUCCESS_CHECKOUT_MESSAGE = "Thank you! Enjoy the book";
+
     public CheckOut(Printer printer, Inputer inputer, BookList bookList) {
         this.printer = printer;
         this.inputer = inputer;
@@ -26,6 +28,7 @@ public class CheckOut implements Operation{
 
         if(checkoutBook.isPresent()) {
             bookList.checkOut(checkoutBook.get());
+            printer.print(SUCCESS_CHECKOUT_MESSAGE);
         }
     }
 
