@@ -1,7 +1,7 @@
 package com.twu.biblioteca.menuOperation;
 
-import com.twu.biblioteca.Book;
-import com.twu.biblioteca.Printer;
+import com.twu.biblioteca.libraryComponent.Book;
+import com.twu.biblioteca.util.Printer;
 
 import java.util.List;
 

@@ -1,9 +1,12 @@
 package com.twu.biblioteca;
 
 
+import com.twu.biblioteca.libraryComponent.Book;
+import com.twu.biblioteca.libraryComponent.Menu;
 import com.twu.biblioteca.menuOperation.BookList;
 import com.twu.biblioteca.menuOperation.Operation;
 import com.twu.biblioteca.menuOperation.Quit;
+import com.twu.biblioteca.util.Printer;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

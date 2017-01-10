@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.libraryComponent;
 
 import com.twu.biblioteca.menuOperation.Operation;
 
