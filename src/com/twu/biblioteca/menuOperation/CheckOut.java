@@ -13,6 +13,7 @@ public class CheckOut implements Operation{
     private BookList bookList;
 
     public static final String SUCCESS_CHECKOUT_MESSAGE = "Thank you! Enjoy the book";
+    public static final String UNSUCCESS_CHECKOUT_MESSAGE = "That book is not available";
 
     public CheckOut(Printer printer, Inputer inputer, BookList bookList) {
         this.printer = printer;
@@ -29,6 +30,8 @@ public class CheckOut implements Operation{
         if(checkoutBook.isPresent()) {
             bookList.checkOut(checkoutBook.get());
             printer.print(SUCCESS_CHECKOUT_MESSAGE);
+        } else {
+            printer.print((UNSUCCESS_CHECKOUT_MESSAGE));
         }
     }
 
