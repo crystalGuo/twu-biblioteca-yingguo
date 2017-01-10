@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.libraryComponent;
 
 public class Book {
 
@@ -10,6 +10,18 @@ public class Book {
         this.name = name;
         this.author = author;
         this.publishYear = publishYear;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAuthor() {
+        return author;
     }
 
     @Override

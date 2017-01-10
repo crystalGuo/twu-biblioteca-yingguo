@@ -12,6 +12,6 @@ public class Inputer {
     }
 
     public String getOption() {
-        return scanner.next();
+        return scanner.nextLine();
     }
 }

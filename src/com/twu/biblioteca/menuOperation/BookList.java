@@ -1,27 +1,27 @@
 package com.twu.biblioteca.menuOperation;
 
 import com.twu.biblioteca.libraryComponent.Book;
-import com.twu.biblioteca.util.Printer;
 
 import java.util.List;
+import java.util.Optional;
 
-public class BookList implements Operation {
+public class BookList {
 
     private List<Book> bookList;
-    private Printer printer;
 
-    public BookList(List<Book> bookList, Printer printer) {
+    public BookList(List<Book> bookList) {
         this.bookList = bookList;
-        this.printer = printer;
     }
 
-    @Override
-    public void operate() {
-        printer.print(bookList);
+    public List<Book> getBookList() {
+        return bookList;
     }
 
-    @Override
-    public String toString() {
-        return "BookList";
+    public void checkOut(Book book) {
+        bookList.remove(book);
+    }
+
+    public Optional<Book> getBook(String name) {
+        return bookList.stream().filter(book -> name.equals(book.getName())).findFirst();
     }
 }

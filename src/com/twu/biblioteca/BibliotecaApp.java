@@ -3,6 +3,8 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.libraryComponent.Book;
 import com.twu.biblioteca.libraryComponent.Menu;
 import com.twu.biblioteca.menuOperation.BookList;
+import com.twu.biblioteca.menuOperation.Catalog;
+import com.twu.biblioteca.menuOperation.CheckOut;
 import com.twu.biblioteca.menuOperation.Operation;
 import com.twu.biblioteca.menuOperation.Quit;
 import com.twu.biblioteca.util.Inputer;
@@ -27,12 +29,14 @@ public class BibliotecaApp {
 
     private static void printmenuOption(Printer printer) {
         Map<Integer, Operation> menuItem = new HashMap<>();
-        List<Book> bookList = getBookList();
-        menuItem.put(1, new BookList(bookList, printer));
-        menuItem.put(2, new Quit());
+        List<Book> list = getBookList();
+        BookList bookList = new BookList(list);
+        Inputer inputer = new Inputer();
+        menuItem.put(1, new Catalog(bookList, printer));
+        menuItem.put(2, new CheckOut(printer, inputer, bookList));
+        menuItem.put(3, new Quit());
         Menu menu = new Menu(menuItem);
 
-        Inputer inputer = new Inputer();
         while(true) {
             printer.print(menu.toString());
             int option = getOption(inputer);

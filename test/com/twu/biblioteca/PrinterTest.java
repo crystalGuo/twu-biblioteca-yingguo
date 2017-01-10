@@ -4,6 +4,7 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.libraryComponent.Book;
 import com.twu.biblioteca.libraryComponent.Menu;
 import com.twu.biblioteca.menuOperation.BookList;
+import com.twu.biblioteca.menuOperation.Catalog;
 import com.twu.biblioteca.menuOperation.Operation;
 import com.twu.biblioteca.menuOperation.Quit;
 import com.twu.biblioteca.util.Printer;
@@ -67,7 +68,8 @@ public class PrinterTest {
     @Test
     public void testMenunPrinter() {
         Map<Integer, Operation> menuItem = new HashMap<>();
-        menuItem.put(1, new BookList(bookList, printer));
+        BookList books = new BookList(bookList);
+        menuItem.put(1, new Catalog(books, printer));
         menuItem.put(2, new Quit());
         Menu menu = new Menu(menuItem);
 
