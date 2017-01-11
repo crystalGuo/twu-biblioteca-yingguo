@@ -6,11 +6,15 @@ import com.twu.biblioteca.util.Printer;
 
 import java.util.Optional;
 
+
 public class BookReturn implements Operation{
 
     private Printer printer;
     private Inputer inputer;
     private BookList bookList;
+
+    public static final String SUCCESS_RETURN_BOOK_MESSAGE = "Thank you for returning the book.";
+    public static final String UNSUCCESS_RETURN_BOOK_MESSAGE = "That is not a valid book to return.";
 
     public BookReturn(Printer printer, Inputer inputer, BookList bookList) {
         this.printer = printer;
@@ -25,6 +29,9 @@ public class BookReturn implements Operation{
 
         if(returnBook.isPresent()) {
             bookList.returnBook(returnBook.get());
+            printer.print(SUCCESS_RETURN_BOOK_MESSAGE);
+        } else {
+            printer.print(UNSUCCESS_RETURN_BOOK_MESSAGE);
         }
     }
 
