@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.libraryComponent.Book;
 import com.twu.biblioteca.libraryComponent.Menu;
 import com.twu.biblioteca.menuOperation.BookList;
+import com.twu.biblioteca.menuOperation.BookReturn;
 import com.twu.biblioteca.menuOperation.Catalog;
 import com.twu.biblioteca.menuOperation.CheckOut;
 import com.twu.biblioteca.menuOperation.Operation;
@@ -34,7 +35,8 @@ public class BibliotecaApp {
         Inputer inputer = new Inputer();
         menuItem.put(1, new Catalog(bookList, printer));
         menuItem.put(2, new CheckOut(printer, inputer, bookList));
-        menuItem.put(3, new Quit());
+        menuItem.put(3, new BookReturn(printer, inputer, bookList));
+        menuItem.put(4, new Quit());
         Menu menu = new Menu(menuItem);
 
         while(true) {

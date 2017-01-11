@@ -10,25 +10,25 @@ public class CheckOut implements Operation{
 
     private Printer printer;
     private Inputer inputer;
-    private BookList bookList;
+    private BookList checkoutList;
 
     public static final String SUCCESS_CHECKOUT_MESSAGE = "Thank you! Enjoy the book";
     public static final String UNSUCCESS_CHECKOUT_MESSAGE = "That book is not available";
 
-    public CheckOut(Printer printer, Inputer inputer, BookList bookList) {
+    public CheckOut(Printer printer, Inputer inputer, BookList checkoutList) {
         this.printer = printer;
         this.inputer = inputer;
-        this.bookList = bookList;
+        this.checkoutList = checkoutList;
     }
 
     @Override
     public void operate() {
         printer.print("Please Input Book's Name:");
-        printer.print(bookList.getBookList());
-        Optional<Book> checkoutBook = bookList.getBook(inputer.getOption());
+        printer.print(checkoutList.getBookList());
+        Optional<Book> checkoutBook = checkoutList.getBorrowableBook(inputer.getOption());
 
         if(checkoutBook.isPresent()) {
-            bookList.checkOut(checkoutBook.get());
+            checkoutList.checkOutBook(checkoutBook.get());
             printer.print(SUCCESS_CHECKOUT_MESSAGE);
         } else {
             printer.print((UNSUCCESS_CHECKOUT_MESSAGE));

@@ -32,22 +32,22 @@ public class bookListTest {
 
     @Test
     public void testShouldGetBookWhenNameIsCorrect() {
-        Optional<Book> book = bookList.getBook("Very British MM");
+        Optional<Book> book = bookList.getBorrowableBook("Very British MM");
         assertTrue(book.isPresent());
         assertEquals(book.get().getAuthor(), "Gray");
     }
 
     @Test
     public void testShouldGetBookWhenNameIsNotCorrect() {
-        Optional<Book> book = bookList.getBook("Very British");
+        Optional<Book> book = bookList.getBorrowableBook("Very British");
         assertFalse(book.isPresent());
     }
 
     @Test
     public void testCheckoutBook() {
-        Optional<Book> book = bookList.getBook("Very British MM");
-        bookList.checkOut(book.get());
-        book = bookList.getBook("Very British MM");
+        Optional<Book> book = bookList.getBorrowableBook("Very British MM");
+        bookList.checkOutBook(book.get());
+        book = bookList.getBorrowableBook("Very British MM");
         assertFalse(book.isPresent());
     }
 }
