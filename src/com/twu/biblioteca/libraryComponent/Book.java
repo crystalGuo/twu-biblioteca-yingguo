@@ -1,6 +1,6 @@
 package com.twu.biblioteca.libraryComponent;
 
-public class Book {
+public class Book implements Item {
 
     private String name;
     private String author;

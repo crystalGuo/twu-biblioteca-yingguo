@@ -2,10 +2,11 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.libraryComponent.Book;
 import com.twu.biblioteca.libraryComponent.Menu;
-import com.twu.biblioteca.menuOperation.BookList;
-import com.twu.biblioteca.menuOperation.BookReturn;
+import com.twu.biblioteca.libraryComponent.Librarian;
+import com.twu.biblioteca.libraryComponent.Resource;
+import com.twu.biblioteca.menuOperation.ResourceResturn;
 import com.twu.biblioteca.menuOperation.Catalog;
-import com.twu.biblioteca.menuOperation.CheckOut;
+import com.twu.biblioteca.menuOperation.CheckOutResource;
 import com.twu.biblioteca.menuOperation.Operation;
 import com.twu.biblioteca.menuOperation.Quit;
 import com.twu.biblioteca.util.Inputer;
@@ -31,11 +32,12 @@ public class BibliotecaApp {
     private static void printmenuOption(Printer printer) {
         Map<Integer, Operation> menuItem = new HashMap<>();
         List<Book> list = getBookList();
-        BookList bookList = new BookList(list);
+        Resource books = new Resource(list, "Book");
+        Librarian bookList = new Librarian(books);
         Inputer inputer = new Inputer();
         menuItem.put(1, new Catalog(bookList, printer));
-        menuItem.put(2, new CheckOut(printer, inputer, bookList));
-        menuItem.put(3, new BookReturn(printer, inputer, bookList));
+        menuItem.put(2, new CheckOutResource(printer, inputer, bookList));
+        menuItem.put(3, new ResourceResturn(printer, inputer, bookList));
         menuItem.put(4, new Quit());
         Menu menu = new Menu(menuItem);
 

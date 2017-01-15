@@ -1,34 +1,31 @@
 package com.twu.biblioteca.menuOperation;
 
-import com.twu.biblioteca.libraryComponent.Book;
+import com.twu.biblioteca.libraryComponent.Librarian;
 import com.twu.biblioteca.util.Inputer;
 import com.twu.biblioteca.util.Printer;
 
-import java.util.Optional;
 
-
-public class BookReturn implements Operation{
+public class ResourceResturn implements Operation{
 
     private Printer printer;
     private Inputer inputer;
-    private BookList bookList;
+    private Librarian librarian;
 
     public static final String SUCCESS_RETURN_BOOK_MESSAGE = "Thank you for returning the book.";
     public static final String UNSUCCESS_RETURN_BOOK_MESSAGE = "That is not a valid book to return.";
 
-    public BookReturn(Printer printer, Inputer inputer, BookList bookList) {
+    public ResourceResturn(Printer printer, Inputer inputer, Librarian librarian) {
         this.printer = printer;
         this.inputer = inputer;
-        this.bookList = bookList;
+        this.librarian = librarian;
     }
 
     @Override
     public void operate() {
         printer.print("Please Input Book's Name You Want To Return:");
-        Optional<Book> returnBook = bookList.getReturnableBook(inputer.getOption());
+        boolean result = librarian.returnResource(inputer.getOption());
 
-        if(returnBook.isPresent()) {
-            bookList.returnBook(returnBook.get());
+        if(result) {
             printer.print(SUCCESS_RETURN_BOOK_MESSAGE);
         } else {
             printer.print(UNSUCCESS_RETURN_BOOK_MESSAGE);

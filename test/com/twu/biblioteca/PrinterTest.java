@@ -3,10 +3,11 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.libraryComponent.Book;
 import com.twu.biblioteca.libraryComponent.Menu;
-import com.twu.biblioteca.menuOperation.BookList;
+import com.twu.biblioteca.libraryComponent.Librarian;
 import com.twu.biblioteca.menuOperation.Catalog;
 import com.twu.biblioteca.menuOperation.Operation;
 import com.twu.biblioteca.menuOperation.Quit;
+import com.twu.biblioteca.libraryComponent.Resource;
 import com.twu.biblioteca.util.Printer;
 import org.junit.After;
 import org.junit.Before;
@@ -68,12 +69,13 @@ public class PrinterTest {
     @Test
     public void testMenunPrinter() {
         Map<Integer, Operation> menuItem = new HashMap<>();
-        BookList books = new BookList(bookList);
+        Resource resource = new Resource(bookList, "Book");
+        Librarian books = new Librarian(resource);
         menuItem.put(1, new Catalog(books, printer));
         menuItem.put(2, new Quit());
         Menu menu = new Menu(menuItem);
 
-        String expectResult = "1\tBookList\n2\tQuit\n";;
+        String expectResult = "1\tCatalog\n2\tQuit\n";;
         printer.print(menu.toString());
         assertThat(output.toString(), is(expectResult));
     }
