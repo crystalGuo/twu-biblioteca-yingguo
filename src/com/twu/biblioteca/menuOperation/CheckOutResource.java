@@ -10,8 +10,8 @@ public class CheckOutResource implements Operation{
     private Inputer inputer;
     private Librarian checkoutList;
 
-    public static final String SUCCESS_CHECKOUT_MESSAGE = "Thank you! Enjoy the book";
-    public static final String UNSUCCESS_CHECKOUT_MESSAGE = "That book is not available";
+    public static final String SUCCESS_CHECKOUT_MESSAGE = "Thank you! Enjoy the %s";
+    public static final String UNSUCCESS_CHECKOUT_MESSAGE = "That %s is not available";
 
     public CheckOutResource(Printer printer, Inputer inputer, Librarian checkoutList) {
         this.printer = printer;
@@ -21,20 +21,26 @@ public class CheckOutResource implements Operation{
 
     @Override
     public void operate() {
-        printer.print("Please Input Book's Name:");
+        String successMsg = String.format(SUCCESS_CHECKOUT_MESSAGE, getElementName());
+        String unsuccessMsg = String.format(UNSUCCESS_CHECKOUT_MESSAGE, getElementName());
+        printer.print("Please Input It's Name:");
         printer.print(checkoutList.getResource().getStockList());
         boolean result = checkoutList.checkoutResource(inputer.getOption());
 
         if(result) {
-            printer.print(SUCCESS_CHECKOUT_MESSAGE);
+            printer.print(successMsg);
         } else {
-            printer.print((UNSUCCESS_CHECKOUT_MESSAGE));
+            printer.print((unsuccessMsg));
         }
+    }
+
+    private String getElementName() {
+        return checkoutList.getResource().getName();
     }
 
     @Override
     public String toString() {
-        return "Checkout a book";
+        return String.format("%s %s", "Checkout", getElementName());
     }
 }
 

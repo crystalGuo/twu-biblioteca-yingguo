@@ -11,8 +11,8 @@ public class ResourceResturn implements Operation{
     private Inputer inputer;
     private Librarian librarian;
 
-    public static final String SUCCESS_RETURN_BOOK_MESSAGE = "Thank you for returning the book.";
-    public static final String UNSUCCESS_RETURN_BOOK_MESSAGE = "That is not a valid book to return.";
+    public static final String SUCCESS_RETURN_BOOK_MESSAGE = "Thank you for returning the %s.";
+    public static final String UNSUCCESS_RETURN_BOOK_MESSAGE = "That is not a valid %s to return.";
 
     public ResourceResturn(Printer printer, Inputer inputer, Librarian librarian) {
         this.printer = printer;
@@ -22,18 +22,25 @@ public class ResourceResturn implements Operation{
 
     @Override
     public void operate() {
-        printer.print("Please Input Book's Name You Want To Return:");
+        String successMsg = String.format(SUCCESS_RETURN_BOOK_MESSAGE, getElementName());
+        String unsuccessMsg = String.format(UNSUCCESS_RETURN_BOOK_MESSAGE, getElementName());
+        printer.print("Please Input It's Name You Want To Return:");
         boolean result = librarian.returnResource(inputer.getOption());
 
         if(result) {
-            printer.print(SUCCESS_RETURN_BOOK_MESSAGE);
+            printer.print(successMsg);
         } else {
-            printer.print(UNSUCCESS_RETURN_BOOK_MESSAGE);
+            printer.print(unsuccessMsg);
         }
+    }
+
+    private String getElementName() {
+        return librarian.getResource().getName();
     }
 
     @Override
     public String toString() {
-        return "Return a Book";
+        return String.format("%s %s", "Return", getElementName());
+
     }
 }

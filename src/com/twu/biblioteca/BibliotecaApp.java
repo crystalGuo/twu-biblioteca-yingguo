@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.libraryComponent.Book;
 import com.twu.biblioteca.libraryComponent.Menu;
 import com.twu.biblioteca.libraryComponent.Librarian;
+import com.twu.biblioteca.libraryComponent.Movie;
 import com.twu.biblioteca.libraryComponent.Resource;
 import com.twu.biblioteca.menuOperation.ResourceResturn;
 import com.twu.biblioteca.menuOperation.Catalog;
@@ -11,7 +12,6 @@ import com.twu.biblioteca.menuOperation.Operation;
 import com.twu.biblioteca.menuOperation.Quit;
 import com.twu.biblioteca.util.Inputer;
 import com.twu.biblioteca.util.Printer;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,14 +31,22 @@ public class BibliotecaApp {
 
     private static void printmenuOption(Printer printer) {
         Map<Integer, Operation> menuItem = new HashMap<>();
+
         List<Book> list = getBookList();
         Resource books = new Resource(list, "Book");
         Librarian bookList = new Librarian(books);
+
+        List<Movie> mList = getMovieList();
+        Resource movies = new Resource(mList, "Movie");
+        Librarian movieList = new Librarian(movies);
+
         Inputer inputer = new Inputer();
         menuItem.put(1, new Catalog(bookList, printer));
         menuItem.put(2, new CheckOutResource(printer, inputer, bookList));
         menuItem.put(3, new ResourceResturn(printer, inputer, bookList));
-        menuItem.put(4, new Quit());
+        menuItem.put(4, new CheckOutResource(printer, inputer, movieList));
+        menuItem.put(5, new ResourceResturn(printer, inputer, movieList));
+        menuItem.put(6, new Quit());
         Menu menu = new Menu(menuItem);
 
         while(true) {
@@ -59,6 +67,15 @@ public class BibliotecaApp {
         bookList.add(new Book("Very British MM", "Gray", "2016"));
 
         return bookList;
+    }
+
+    private static List getMovieList() {
+        List<Movie> movieList = new ArrayList<Movie>();
+        movieList.add(new Movie("The Sky Of the City", "Lmis", "2015", 9));
+        movieList.add(new Movie("Forrest Gump", "Tom", "1995", 8));
+        movieList.add(new Movie("Friends", "Slim", "2016", 7));
+
+        return movieList;
     }
 
     private static int getOption(Inputer inputer) {
